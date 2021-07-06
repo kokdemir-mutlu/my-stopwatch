@@ -13,21 +13,16 @@ body {
   border-radius: 10px; */
 }
 
-.container > * {
-  border-radius: 10px;
-}
-
 .counter-div {
   display: flex;
   justify-content: center;
-  border: solid;
 }
 
 .buttons-div{
   display: flex;
   flex-direction: row;
   justify-content:center;
-  border: solid;
+  /* border: solid; */
 }
 
 button {
@@ -44,9 +39,14 @@ button {
 }
 
 .laps-div{
-  border: solid;
+  /* border: solid; */
   text-align: center;
   display: flex;
   justify-content: center;
+}
+
+#p-counter {
+  font-size: 50px;
+  /* color: dodgerblue; */
 }
 
