@@ -5,16 +5,24 @@ body {
 }
 
 .container {
-  max-width: max-content;
+  min-width: 600px;
   display: flex;
   flex-direction: column;
+  align-self: center;
+  border: solid;
+}
+
+.counter-div {
+  display: flex;
+  justify-content: center;
   border: solid;
 }
 
 .buttons-div{
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content:center;
+  border: solid;
 }
 
 button {
@@ -31,5 +39,9 @@ button {
 }
 
 .laps-div{
+  border: solid;
   text-align: center;
+  display: flex;
+  justify-content: center;
 }
+
