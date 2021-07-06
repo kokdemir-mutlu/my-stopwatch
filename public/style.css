@@ -2,16 +2,23 @@ body {
   font-family: sans-serif;
   display: flex;
   justify-content: center;
-  /* max-width: 1280px; */
 }
 
 .container {
   max-width: max-content;
+  display: flex;
   flex-direction: column;
   border: solid;
 }
 
+.buttons-div{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
 button {
+  min-width: 70px;
   border-radius: 8px;
   border: none;
   margin: 5px;
