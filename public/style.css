@@ -9,7 +9,12 @@ body {
   display: flex;
   flex-direction: column;
   align-self: center;
-  border: solid;
+  /* border: solid;
+  border-radius: 10px; */
+}
+
+.container > * {
+  border-radius: 10px;
 }
 
 .counter-div {
