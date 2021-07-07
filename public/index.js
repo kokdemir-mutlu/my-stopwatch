@@ -4,12 +4,20 @@ var timerPElement = document.getElementById('p-counter');
 resetTimeVariables();
 var startBtn = document.getElementById('start-btn');
 var resetBtn = document.getElementById('reset-btn');
+var containerStopWatch = document.getElementsByClassName('container-stopwatch')[0];
+var addStopWatchBtn = document.getElementById('add-stopwatch-btn');
 var intervalId;
 var isRunning = false;
 var counterForLaps = 1;
 
 startBtn.onclick = startTheStopWatch;
 resetBtn.onclick = handleResetButton;
+addStopWatchBtn.onclick = addNewStopWatch;
+
+function addNewStopWatch(){
+    // var clonedStopWatch = containerStopWatch.cloneNode(true);
+    // document.body.appendChild(clonedStopWatch);
+}
 
 function startTheStopWatch(){
     resetBtn.disabled = false;
