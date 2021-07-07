@@ -1,12 +1,10 @@
 
+
 var timerPElement = document.getElementById('p-counter');
+resetTimeVariables();
 var startBtn = document.getElementById('start-btn');
 var resetBtn = document.getElementById('reset-btn');
 var intervalId;
-var milisec = 0;
-var sec = 0;
-var min = 0;
-var hour = 0;
 var isRunning = false;
 var counterForLaps = 1;
 
@@ -18,10 +16,9 @@ function startTheStopWatch(){
     if(!isRunning){
         isRunning = true;
         startBtn.innerText = 'Stop';
-        resetBtn.innerText = 'Lap'
+        resetBtn.innerText = 'Lap';
         intervalId = setInterval(function(){
             milisec += 10;
-            timerPElement.innerHTML = milisec;
             updateTheStopWatch();
         },10);
     }
@@ -29,28 +26,30 @@ function startTheStopWatch(){
         clearInterval(intervalId);
         startBtn.innerText = 'Start';
         isRunning = false;
-        resetBtn.innerText = 'Reset'
+        resetBtn.innerText = 'Reset';
     }
-    
 }
 
 
 function handleResetButton(){
-    console.log('sdf')
-    if(isRunning){// for lap
+    if(isRunning){
         addLap();
     }
     else{
         clearInterval(intervalId);
         isRunning = false;
         deleteLapTable();
-        milisec = 0;
-        sec = 0;
-        min = 0;
-        hour = 0;
-        timerPElement.innerHTML = '00:00:00:00';
+        resetTimeVariables();
     }
 
+}
+
+function resetTimeVariables(){
+    milisec = 0;
+    sec = 0;
+    min = 0;
+    hour = 0;
+    timerPElement.innerHTML = '00:00:00:00';
 }
 
 function deleteLapTable(){
@@ -78,7 +77,7 @@ function updateTheStopWatch(){
     var strMin = ''
     var strHour = ''
     if( milisec < 100 ){
-        strMilisec = '0' + milisec;
+        strMilisec = '0' + (milisec/10);
     }
     else{
         if( milisec === 1000 ){
