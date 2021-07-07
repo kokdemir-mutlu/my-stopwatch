@@ -2,6 +2,7 @@ body {
   font-family: sans-serif;
   display: flex;
   justify-content: center;
+  flex-direction: column;
 }
 
 .container-stopwatch {
@@ -31,7 +32,7 @@ button {
   min-width: 70px;
   border-radius: 8px;
   border: none;
-  margin: 5px;
+  margin: 10px;
   background-color:dodgerblue;
   color: white;
   padding: 10px;
