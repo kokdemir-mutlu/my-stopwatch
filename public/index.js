@@ -1,5 +1,4 @@
 
-
 var timerPElement = document.getElementById('p-counter');
 var startBtn = document.getElementById('start-btn');
 var resetBtn = document.getElementById('reset-btn');
@@ -8,35 +7,72 @@ var milisec = 0;
 var sec = 0;
 var min = 0;
 var hour = 0;
+var isRunning = false;
+var counterForLaps = 1;
 
 startBtn.onclick = startTheStopWatch;
-resetBtn.onclick = resetTheStopWatch;
+resetBtn.onclick = handleResetButton;
 
 function startTheStopWatch(){
-    // isRunning = true;
-    // console.log('start')
-    intervalId = setInterval(function(){
-        milisec += 10;
-        timerPElement.innerHTML = milisec;
-        updateTheStopWatch();
-    },10);
+    resetBtn.disabled = false;
+    if(!isRunning){
+        isRunning = true;
+        startBtn.innerText = 'Stop';
+        resetBtn.innerText = 'Lap'
+        intervalId = setInterval(function(){
+            milisec += 10;
+            timerPElement.innerHTML = milisec;
+            updateTheStopWatch();
+        },10);
+    }
+    else{
+        clearInterval(intervalId);
+        startBtn.innerText = 'Start';
+        isRunning = false;
+        resetBtn.innerText = 'Reset'
+    }
+    
 }
 
 
-function resetTheStopWatch(){
-    clearInterval(intervalId);
-    // console.log('stop')
-    // isRunning = false;
-    milisec = 0;
-    sec = 0;
-    min = 0;
-    hour = 0;
-    timerPElement.innerHTML = '00:00:00:00';
+function handleResetButton(){
+    console.log('sdf')
+    if(isRunning){// for lap
+        addLap();
+    }
+    else{
+        clearInterval(intervalId);
+        isRunning = false;
+        deleteLapTable();
+        milisec = 0;
+        sec = 0;
+        min = 0;
+        hour = 0;
+        timerPElement.innerHTML = '00:00:00:00';
+    }
+
 }
 
+function deleteLapTable(){
+    var tableElement = document.getElementById('lap-table');
+    var lenTable = tableElement.rows.length;
+    // console.log('table length : ' + lenTable);
+    for(var i = 1; i < lenTable; ++i)
+        tableElement.deleteRow(1);
+    // console.log('table length : ' + tableElement.rows.length);
+}
+
+function addLap(){
+    var tableElement = document.getElementById('lap-table');
+    var row = tableElement.insertRow(1);
+    var cell0 = row.insertCell(0);
+    var cell1 = row.insertCell(1);
+    cell0.innerHTML = counterForLaps;
+    cell1.innerHTML = timerPElement.innerHTML;
+    ++counterForLaps;
+}
 
 function updateTheStopWatch(){
-    // timerPElement.innerHTML = milisec
     var strMilisec = ''
     var strSec = ''
     var strMin = ''
@@ -88,7 +124,7 @@ function updateTheStopWatch(){
     }
     else{
         if( hour === 24 ){
-            resetTheStopWatch();
+            handleResetButton();
         }
         else{
             strHour = hour.toString();

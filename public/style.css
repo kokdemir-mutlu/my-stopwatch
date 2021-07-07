@@ -4,7 +4,7 @@ body {
   justify-content: center;
 }
 
-.container {
+.container-stopwatch {
   min-width: 600px;
   display: flex;
   flex-direction: column;
@@ -24,6 +24,8 @@ body {
   justify-content:center;
   /* border: solid; */
 }
+
+
 
 button {
   min-width: 70px;
@@ -50,3 +52,7 @@ button {
   /* color: dodgerblue; */
 }
 
+th, td {
+  width: 200px;
+  border-bottom: 1px solid dodgerblue;
+}

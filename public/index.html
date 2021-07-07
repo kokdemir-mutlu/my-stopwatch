@@ -4,33 +4,27 @@
 <head>
   <meta charset="utf-8">
   <meta name="generator" content="GitLab Pages">
-  <title>Plain HTML site using GitLab Pages</title>
+  <title>StopWatch</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <div class="container">
+  <div class="container-stopwatch">
 
     <div class='counter-div'>
       <p id="p-counter">00:00:00:00</p>
     </div>
 
     <div class='buttons-div'>
-      <button id='start-btn'>Start</button>
-      <button id='reset-btn'>Reset</button>
+      <button type="button" id='start-btn'>Start</button>
+      <button type="button" id='reset-btn' disabled>Reset</button>
     </div>
 
     <div class="laps-div">
-      <table>
+      <table id='lap-table'>
         <tr>
           <th>LAP</th>
           <th>TIME</th>
-          <th>TOTAL TIME</th>
-        </tr>
-        <tr>
-          <td>0</td>
-          <td>0</td>
-          <td>0</td>
         </tr>
         
       </table>
