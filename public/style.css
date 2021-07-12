@@ -48,8 +48,8 @@ button {
   justify-content: center;
 }
 
-#p-counter {
-  font-size: 50px;
+.p-counter {
+  font-size: 150%;
   /* color: dodgerblue; */
 }
 
