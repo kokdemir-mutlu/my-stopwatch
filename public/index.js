@@ -104,11 +104,9 @@ class StopWatch {
   deleteLapTable() {
     var lenTable = this.lapTable.rows.length;
 
-    // console.log('table length : ' + lenTable);
     for (var i = 1; i < lenTable; ++i) 
       this.lapTable.deleteRow(1);
 
-    // console.log('table length : ' + tableElement.rows.length);
   }
 
   addLap() {
@@ -122,7 +120,6 @@ class StopWatch {
 
   updateTheStopWatch() {
     this.milisec += 10;
-    // console.log('milisec: ' + this.milisec + ', sec: ' + this.sec);
     var strMilisec = "";
     var strSec = "";
     var strMin = "";
