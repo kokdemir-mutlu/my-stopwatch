@@ -51,8 +51,6 @@ class StopWatch {
 
     this.containerStopWatch.appendChild(this.lapsDiv);
 
-    this.resetTimeVariables();
-
     this.startTheStopWatch = this.startTheStopWatch.bind(this);
     this.startBtn.onclick = this.startTheStopWatch;
 
@@ -64,6 +62,8 @@ class StopWatch {
     this.addLap = this.addLap.bind(this);
     this.resetTimeVariables = this.resetTimeVariables.bind(this);
     this.updateTheStopWatch = this.updateTheStopWatch.bind(this);
+
+    this.resetTimeVariables();
   }
 
   startTheStopWatch() {
