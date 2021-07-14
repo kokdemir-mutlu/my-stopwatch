@@ -2,16 +2,16 @@
 class StopWatch {
   constructor(divElement) {
     this.containerStopWatch = divElement;
-    this.counterDiv = $('div');
-    this.counterP = $('p');
+    this.counterDiv = $((document.createElement('div')));
+    this.counterP = $((document.createElement('p')));
 
-    this.buttonsDiv = $('div');
-    this.startBtn = $('button');
-    this.resetBtn = $('button');
+    this.buttonsDiv = $((document.createElement('div')));
+    this.startBtn = $((document.createElement('button')));
+    this.resetBtn = $((document.createElement('button')));
 
-    this.lapsDiv = $('div');
-    this.lapTable = $('table');
-    this.headerTr = $('tr');
+    this.lapsDiv = $((document.createElement('div')));
+    this.lapTable = $((document.createElement('table')));
+    this.headerTr = $((document.createElement('tr')));
     this.intervalId;
     this.isRunning = false;
     this.counterForLaps = 1;
@@ -38,17 +38,34 @@ class StopWatch {
 
     this.lapsDiv.addClass('laps-div');
 
-    var lapTh = $('th');
+    var lapTh = $((document.createElement('th')));
     lapTh.text('LAP');
     this.headerTr.append(lapTh);
-    var timeTh = $('th');
+    var timeTh = $((document.createElement('th')));
     timeTh.text('TIME');
     this.headerTr.append(timeTh);
+    this.tHead = $((document.createElement('thead')));
+    this.tHead.append(this.headerTr);
+    
+    this.tBody = $((document.createElement('tbody')));
+    this.lapTable.append(this.tHead);
+    this.lapTable.append(this.tBody);
 
-    this.lapTable.append(this.headerTr);
     this.lapsDiv.append(this.lapTable);
 
     this.containerStopWatch.append(this.lapsDiv);
+
+    this.startTheStopWatch = this.startTheStopWatch.bind(this);
+    this.startBtn.on('click',this.startTheStopWatch);
+
+    this.handleResetButton = this.handleResetButton.bind(this);
+    this.resetBtn.on('click',this.handleResetButton);
+    this.resetBtn.disabled = true;
+
+    this.deleteLapTable = this.deleteLapTable.bind(this);
+    this.addLap = this.addLap.bind(this);
+    this.resetTimeVariables = this.resetTimeVariables.bind(this);
+    this.updateTheStopWatch = this.updateTheStopWatch.bind(this);
 
     this.resetTimeVariables();
   }
@@ -62,20 +79,20 @@ $.extend(StopWatch.prototype,{
     this.min = 0;
     this.hour = 0;
     this.counterForLaps = 1;
-    this.counterP.innerHTML = "00:00:00:00";
+    this.counterP.text("00:00:00:00");
   },
   startTheStopWatch : function(){
     this.resetBtn.disabled = false;
     if (!this.isRunning) {
       this.isRunning = true;
-      this.startBtn.innerText = "STOP";
-      this.resetBtn.innerText = "LAP";
+      this.startBtn.text("STOP");
+      this.resetBtn.text("LAP");
       this.intervalId = setInterval(this.updateTheStopWatch, 10);
     } else {
       clearInterval(this.intervalId);
-      this.startBtn.innerText = "START";
+      this.startBtn.text("START");
       this.isRunning = false;
-      this.resetBtn.innerText = "RESET";
+      this.resetBtn.text("RESET");
     }
   },
   handleResetButton: function(){
@@ -88,25 +105,17 @@ $.extend(StopWatch.prototype,{
     }
   },
   deleteLapTable : function(){
-    var lenTable = this.lapTable.rows.length;
-
-    // console.log('table length : ' + lenTable);
-    for (var i = 1; i < lenTable; ++i) 
-      this.lapTable.deleteRow(1);
-
-    // console.log('table length : ' + tableElement.rows.length);
+    this.tBody.empty();
   },
   addLap : function(){
-    var row = this.lapTable.insertRow(1);
-    var cell0 = row.insertCell(0);
-    var cell1 = row.insertCell(1);
-    cell0.innerHTML = this.counterForLaps;
-    cell1.innerHTML = this.counterP.innerHTML;
+    var row = '<tr><td>' + this.counterForLaps +
+     '</td><td>' + this.counterP.text() + '</td></tr>';
+    
+    this.tBody.append(row);
     ++this.counterForLaps;
   },
   updateTheStopWatch : function(){
     this.milisec += 10;
-    // console.log('milisec: ' + this.milisec + ', sec: ' + this.sec);
     var strMilisec = "";
     var strSec = "";
     var strMin = "";
@@ -162,5 +171,5 @@ $.extend(StopWatch.prototype,{
 })
 
 $(document).ready(function(){
-  
+  var stopwatch = new StopWatch($('#stopwatch-div'));
 });
