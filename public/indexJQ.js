@@ -168,8 +168,16 @@ $.extend(StopWatch.prototype,{
 
     this.counterP.text(strHour + ":" + strMin + ":" + strSec + ":" + strMilisec);
   }
-})
+});
+
+(function ( $ ){
+  $.fn.createStopWatch = function(){
+    new StopWatch(this);
+    return this;
+  }
+}( jQuery ));
 
 $(document).ready(function(){
-  var stopwatch = new StopWatch($('#stopwatch-div'));
+  // var stopwatch = new StopWatch($('#stopwatch-div'));
+  $('#stopwatch-div').createStopWatch();
 });
