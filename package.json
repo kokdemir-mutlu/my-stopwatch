@@ -1,0 +1,21 @@
+{
+  "name": "my-stopwatch",
+  "version": "1.0.0",
+  "description": "![Build Status](https://gitlab.com/pages/plain-html/badges/master/build.svg)",
+  "private" : true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build" : "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.piworks.net/mutlu.kokdemir/my-stopwatch.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^5.48.0",
+    "webpack-cli": "^4.7.2"
+  }
+}
