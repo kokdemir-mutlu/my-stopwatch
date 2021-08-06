@@ -2,10 +2,12 @@
   "name": "my-stopwatch",
   "version": "1.0.0",
   "description": "![Build Status](https://gitlab.com/pages/plain-html/badges/master/build.svg)",
-  "private" : true,
+  "private": true,
+  "main": "start.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build" : "webpack"
+    "build": "webpack",
+    "start": "node start.js"
   },
   "repository": {
     "type": "git",
@@ -17,5 +19,8 @@
   "devDependencies": {
     "webpack": "^5.48.0",
     "webpack-cli": "^4.7.2"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
   }
 }
